@@ -1,0 +1,22 @@
+name: react-on-comment
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  check-comment:
+    name: Check comment for /publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check command
+        id: check-command
+        uses: xt0rted/slash-command-action@v1
+        with:
+          command: publish
+          reaction: "true"
+          reaction-type: "eyes"
+          allow-edits: "false"
+          permission-level: write
+          repo-token: ${{ secrets.GH_TOKEN }}
+      - name: Get the output
+        run: echo "The output was ${{ steps.check-command.outputs.result }}"
