@@ -18,5 +18,19 @@ jobs:
           allow-edits: "false"
           permission-level: write
           repo-token: ${{ secrets.GH_TOKEN }}
-      - name: Get the output
-        run: echo "The output was ${{ steps.check-command.outputs.result }}"
+
+  create-comment:
+        name: Create comment
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Create comment
+              uses: peter-evans/create-or-update-comment@v1
+              with:
+                issue-number: ${{ github.event.issue.number }}
+                body: |
+                  Hello @${{ github.event.comment.user.login }}! Thanks for your comment.
+
+  
