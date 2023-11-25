@@ -31,6 +31,6 @@ jobs:
               with:
                 issue-number: ${{ github.event.issue.number }}
                 body: |
-                  Hello @${{ github.event.comment.user.login }}! Thanks for your comment.
+                  Thanks for your comment.
 
   
